@@ -6,8 +6,7 @@ const db=[];
 app.use(express.json())
 app.use(urlencoded({extended:true}))
 app.get('/users',(req,res)=>{
-    res.json(db.map((user)=>user.name));
-    res.json(db)
+    res.json(db.map((user)=>user.name))
 });
 
 app.post('/sign-up',async (req,res)=>{
