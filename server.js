@@ -22,7 +22,7 @@ app.post('/login',async (req,res)=>{
   const name=req.body.username;
   const user=db.find((user)=>user.name==name)
   if(user==null)
-  res.send('<h1>User doesn not exist</h1>')
+  res.send('<h1>User does not exist</h1>')
   try{
   const passwordCheck= await bcrypt.compare(password,user.password);
   if(!passwordCheck)
@@ -35,4 +35,4 @@ app.post('/login',async (req,res)=>{
   }
 
 });
-app.listen(3000);
+app.listen(3000,()=>console.log('Server Running'));
