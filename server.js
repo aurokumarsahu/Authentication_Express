@@ -2,6 +2,7 @@ const { urlencoded } = require('body-parser');
 const express=require('express');
 const app=express();
 const bcrypt=require('bcrypt')
+const cors=require('cors')
 const db=[];
 app.use(cors())
 app.use(express.json())
