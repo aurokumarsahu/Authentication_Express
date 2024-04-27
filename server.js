@@ -3,8 +3,10 @@ const express=require('express');
 const app=express();
 const bcrypt=require('bcrypt')
 const db=[];
+app.use(cors())
 app.use(express.json())
 app.use(urlencoded({extended:true}))
+
 app.get('/users',(req,res)=>{
     res.json(db.map((user)=>user.name))
 });
@@ -17,6 +19,7 @@ app.post('/sign-up',async (req,res)=>{
     res.send('<h1>User Created</h1>')
     console.log(req.body);
 });
+
 app.post('/login',async (req,res)=>{
   const password=req.body.password;
   const name=req.body.username;
@@ -33,6 +36,6 @@ app.post('/login',async (req,res)=>{
   catch{
     res.status(500);
   }
-
 });
+
 app.listen(3000,()=>console.log('Server Running'));
