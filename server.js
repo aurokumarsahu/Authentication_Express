@@ -17,5 +17,22 @@ app.post('/sign-up',async (req,res)=>{
     res.send('<h1>User Created</h1>')
     console.log(req.body);
 });
+app.post('/login',async (req,res)=>{
+  const password=req.body.password;
+  const name=req.body.username;
+  const user=db.find((user)=>user.name==name)
+  if(user==null)
+  res.send('<h1>User doesn not exist</h1>')
+  try{
+  const passwordCheck= await bcrypt.compare(password,user.password);
+  if(!passwordCheck)
+  res.send('<h1>Invalid login</h1>')
+    else
+    res.send('<h1>Logged in successfully</h1>')
+  }
+  catch{
+    res.status(500);
+  }
 
+});
 app.listen(3000);
