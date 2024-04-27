@@ -9,13 +9,16 @@
 
 <body>
     <form action="http://localhost:3000/sign-up" method="post">
-        <label for="username">Name:</label>
-        <input type="text" name="username" id="username" size="30">
+        <label for="username"><strong>Name: </strong></label>
         <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+        <input type="text" name="username" id="username" size="30" required>
         <br>
-        <button type="submit" >submit</button>
+        <label for="password"><strong>Password:</strong></label>
+        <br>
+        <input type="password" name="password" id="password" size="30" required>
+        <br>
+        <br>
+        <button type="submit" >Sign Up</button>
     </form>
 </body>
 </html>
