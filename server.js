@@ -18,7 +18,6 @@ app.post('/sign-up',async (req,res)=>{
     db.push({name:req.body.username,password:hashedPassword});
     res.status(201);
     res.send('<h1>User Created</h1>')
-    console.log(req.body);
 });
 
 app.post('/login',async (req,res)=>{
