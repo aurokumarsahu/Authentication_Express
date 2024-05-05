@@ -5,20 +5,25 @@ const bcrypt=require('bcrypt')
 const cors=require('cors')
 const mongoose=require('mongoose')
 const {Schema, model}=mongoose
+require('dotenv').config()
+
+
 mongoose.connect(process.env.MONGO_URI)
 app.use(cors())
 app.use(express.json())
 app.use(urlencoded({extended:true}))
 
+//define mongoose schema and create a model(collection)
 const UserSchema=new Schema({name:String,password:String})
 const db=model('db',UserSchema)
 
-
+// Get Users List
 app.get('/users',async (req,res)=>{
    const user=await db.find({},{name:1})
     res.json(user)
 });
 
+//Sign Up endpoint
 app.post('/sign-up',async (req,res)=>{
     const salt=await bcrypt.genSalt()
     const hashedPassword=await bcrypt.hash(req.body.password,salt)
@@ -34,6 +39,7 @@ app.post('/sign-up',async (req,res)=>{
     }
 });
 
+//Login endpoint
 app.post('/login',async (req,res)=>{
   const password=req.body.password;
   const name=req.body.username;
