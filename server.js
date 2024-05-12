@@ -18,11 +18,11 @@ const UserSchema=new Schema({name:String,password:String})
 const db=model('db',UserSchema)
 
 // Get Users List
-app.get('/users',async (req,res)=>{
+/*app.get('/users',async (req,res)=>{
    const user=await db.find({},{name:1})
     res.json(user)
 });
-
+*/
 //Sign Up endpoint
 app.post('/sign-up',async (req,res)=>{
     const salt=await bcrypt.genSalt()
