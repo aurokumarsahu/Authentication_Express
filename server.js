@@ -35,7 +35,7 @@ app.post('/sign-up',async (req,res)=>{
     const user=new db({name:req.body.username,password:hashedPassword});
     await user.save();
     res.status(201);
-    res.send('User Created')
+    res.send('User Created successfully')
     }
 });
 
