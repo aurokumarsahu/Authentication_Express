@@ -28,14 +28,14 @@ app.post('/sign-up',async (req,res)=>{
     const salt=await bcrypt.genSalt()
     const hashedPassword=await bcrypt.hash(req.body.password,salt)
     if(await db.findOne({name:req.body.username})){
-    res.send('<h1>User name already exists</h1>')
+    res.send('User name already exists')
     res.status(400)
     }
     else{
     const user=new db({name:req.body.username,password:hashedPassword});
     await user.save();
     res.status(201);
-    res.send('<h1>User Created</h1>')
+    res.send('User Created')
     }
 });
 
@@ -45,13 +45,13 @@ app.post('/login',async (req,res)=>{
   const name=req.body.username;
   const user=await db.findOne({name:name})
   if(user==null)
-  res.send('<h1>User does not exist</h1>')
+  res.send('User does not exist')
   try{
   const passwordCheck= await bcrypt.compare(password,user.password);
   if(!passwordCheck)
-  res.send('<h1>Invalid login</h1>')
+  res.send('Invalid login')
     else
-    res.send('<h1>Logged in successfully</h1>')
+    res.send('Logged in successfully')
   }
   catch{
     res.status(500);
