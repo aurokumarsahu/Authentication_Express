@@ -46,7 +46,7 @@ app.post('/login', async (req, res) => {
       res.status(401).send('Invalid login')
     else {
       res.status(200).send('Logged in successfully')
-      jwt.sign(process.env.JWT_TOKEN,{username:})
+      jwt.sign({username:username},process.env.JWT_TOKEN,{expiresIn:60*45})
     }
   }
   catch {
