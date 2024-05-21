@@ -45,7 +45,7 @@ app.post('/login', async (req, res) => {
     if (!passwordCheck)
       res.status(401).send('Invalid login')
     else {
-      const jwtToken=jwt.sign({username:username},process.env.JWT_TOKEN,{expiresIn:60*45})
+      const jwtToken=jwt.sign({username:username},process.env.JWT_TOKEN)
       res.status(200).send({message:'Logged in successfully',jwtToken:jwtToken})
     }
   }
