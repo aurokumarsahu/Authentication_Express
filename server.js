@@ -28,8 +28,7 @@ app.post('/sign-up', async (req, res) => {
   else {
     const user = new db({ name: req.body.username, password: hashedPassword });
     await user.save();
-    res.status(201);
-    res.send('User Created successfully')
+    res.status(201).send('User Created successfully');
   }
 });
 
@@ -39,13 +38,15 @@ app.post('/login', async (req, res) => {
   const name = req.body.username;
   const user = await db.findOne({ name: name })
   if (user == null)
-    res.send('User does not exist')
+    {
+      res.status(400).send('User does not exist')
+    }
   try {
     const passwordCheck = await bcrypt.compare(password, user.password);
     if (!passwordCheck)
-      res.send('Invalid login')
+      res.status(401).send('Invalid login')
     else
-      res.send('Logged in successfully')
+      res.status(200).send('Logged in successfully')
   }
   catch {
     res.status(500);
